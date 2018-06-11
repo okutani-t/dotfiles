@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: erbptag
+# key: <%=
+# --
+<%= $0 %>

@@ -1,0 +1,44 @@
+[user]
+	name = okutani-t
+        # email = @see .gitconfig.local
+[include]
+        path = .gitconfig.local
+[color]
+	ui = true
+        diff = auto
+        status = auto
+        branch = auto
+        grep = auto
+[core]
+        editor = vim
+	excludesfile = /Users/okutani/.gitignore_global
+[alias]
+        a      = add
+        ci     = commit
+        co     = checkout
+        d      = diff
+        di     = diff
+        dc     = diff --cached
+        dic    = diff --cached
+        b      = branch -a
+        s      = status --short --branch
+        st     = status
+        info   = remote show origin
+        l      = log --graph -n 20 --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(green)- %an, %cr%Creset')))
+        graph  = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+        review = diff origin/master
+[push]
+        default = current
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+[pager]
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
+[github]
+	user = okutani-t

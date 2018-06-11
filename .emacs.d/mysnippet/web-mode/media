@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: media
+# key: media
+# --
+@media screen and (max-width: 768px) {
+  $0
+}

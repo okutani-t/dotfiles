@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: foreach
+# key: foreach
+# --
+foreach ($${1:values} as $key => $value) {
+  ${2: }
+}

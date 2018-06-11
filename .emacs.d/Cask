@@ -1,0 +1,138 @@
+;; パッケージリポジトリの追加
+(source gnu)
+(source melpa)
+(source marmalade)
+
+;; Cask導入時に入ってたやつ
+;; http://posaune.hatenablog.com/entry/2014/06/17/221041
+(depends-on "bind-key")
+(depends-on "cask")
+(depends-on "dash")
+(depends-on "drag-stuff")
+(depends-on "exec-path-from-shell")
+(depends-on "expand-region")
+(depends-on "f")
+(depends-on "flycheck")
+(depends-on "flycheck-cask")
+(depends-on "htmlize")
+(depends-on "idle-highlight-mode")
+(depends-on "magit")
+(depends-on "multiple-cursors")
+(depends-on "nyan-mode")
+(depends-on "pallet")
+(depends-on "popwin")
+(depends-on "prodigy")
+(depends-on "projectile")
+(depends-on "s")
+(depends-on "smartparens")
+(depends-on "smex")
+(depends-on "use-package")
+(depends-on "web-mode")
+(depends-on "yasnippet")
+
+;;; 以下自分で追加したやつ
+;; el分割管理
+(depends-on "init-loader")
+
+;; theme
+(depends-on "monokai-theme")
+
+;; マッチする数を表示&置換を使いやすくする
+(depends-on "anzu")
+
+;; markdown
+(depends-on "markdown-mode")
+
+;; YAML
+(depends-on "yaml-mode")
+
+;; JS
+(depends-on "js2-mode")
+(depends-on "json-mode")
+(depends-on "coffee-mode")
+
+;; Ruby
+(depends-on "ruby-mode")
+(depends-on "rubocop")
+(depends-on "ruby-block")
+(depends-on "ruby-electric")
+(depends-on "ruby-end")
+(depends-on "rspec-mode")
+
+;; PHP
+(depends-on "php-mode")
+(depends-on "php-completion")
+
+;; CSS
+(depends-on "css-mode")
+
+;; Scss
+(depends-on "scss-mode")
+
+;; golang
+(depends-on "go-mode")
+
+;; お手軽実行
+(depends-on "quickrun")
+
+;; 最近開いたファイル
+(depends-on "recentf-ext")
+
+;; undoの永続化
+(depends-on "undohist")
+
+;; point-undo
+(depends-on "point-undo")
+
+;; 補完
+(depends-on "auto-complete")
+
+;; helm
+(depends-on "helm")
+(depends-on "helm-swoop")
+(depends-on "helm-git-grep")
+(depends-on "helm-gtags")
+(depends-on "helm-ls-git")
+(depends-on "helm-descbinds")
+(depends-on "helm-rdefs")
+(depends-on "helm-etags-plus")
+(depends-on "bind-key")
+
+;; ace-isearch
+(depends-on "ace-isearch")
+
+;; ace-jump-mode
+(depends-on "ace-jump-mode")
+
+;; 書き捨てファイル保存
+(depends-on "open-junk-file")
+
+;; redoを使えるようにする
+(depends-on "undo-tree")
+
+;; セッションを保持
+(depends-on "session")
+
+;; カラーコードに色をつける
+(depends-on "rainbow-mode")
+
+;; multiple-cursorsと一緒に使う
+(depends-on "smartrep")
+
+;; サイドバーにツリー表示
+(depends-on "neotree")
+
+;; html, cssを便利に展開
+(depends-on "emmet-mode")
+
+;; migemo
+(depends-on "migemo")
+
+;; git gutter+
+(depends-on "git-gutter+")
+
+;; magithub
+(depends-on "magithub")
+
+;; import zsh path
+(depends-on "exec-path-from-shell")

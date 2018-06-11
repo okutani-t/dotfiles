@@ -1,0 +1,27 @@
+# for ~/.gitignore
+.DS_Store
+a.out
+
+# for ~/dotfiles/.gitignore
+.emacs.d/vendor/
+.emacs.d/elpa/
+.emacs.d/elisp/
+.emacs.d/auto-save-list/
+.emacs.d/url/
+.emacs.d/bookmarks
+.emacs.d/history
+.emacs.d/tramp
+.emacs.d/.cask
+.emacs.d/recentf*
+.emacs.d/flycheck_*
+.emacs.d/*.elc
+.emacs.d/projectile-*
+.emacs.d/junk_file/
+.emacs.d/undohist/
+.emacs.d/yasnippets/
+.emacs.d/.session
+.emacs.d/eshell/
+.emacs.d/.mc-lists.el
+.emacs.d/ac-comphist.dat
+.emacs.d/.recentf
+.emacs.d/magithub/*

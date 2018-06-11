@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: html5
+# key: html
+# --
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>${1:site title}</title>
+  <!-- <link rel="stylesheet" type="text/css" href="css/html5reset.css"> -->
+  <style>
+  </style>
+</head>
+<body>
+  <h1>${2:タイトル１}</h1>
+</body>
+</html>
