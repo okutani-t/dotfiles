@@ -40,9 +40,9 @@
 ;; Backtrace
 (push '("*Backtrace*" :height 10) popwin:special-display-config)
 ;; magit
-(push '("*magit-edit-log*" :height 20) popwin:special-display-config)
-(push '("*magit-commit*" :height 20) popwin:special-display-config)
-(push '("*magit-diff*" :height 20) popwin:special-display-config)
-(push '(magit-status-mode :height 20) popwin:special-display-config)
+(push '("*magit-edit-log*" :height 25) popwin:special-display-config)
+(push '("*magit-commit*" :height 25) popwin:special-display-config)
+(push '("*magit-diff*" :height 25) popwin:special-display-config)
+(push '(magit-status-mode :height 25) popwin:special-display-config)
 ;; rspec-mode
 (push '("*rspec-compilation*" :height 15) popwin:special-display-config)
