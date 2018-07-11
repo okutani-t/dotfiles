@@ -69,3 +69,7 @@
 (setq web-mode-enable-current-element-highlight t)
 ;; 対応するカラムのハイライト
 (setq web-mode-enable-current-column-highlight t)
+
+;; 自動{}補完を停止
+(setq web-mode-enable-auto-pairing nil)
+(setq web-mode-auto-close-style nil)
