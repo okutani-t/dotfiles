@@ -7,6 +7,7 @@ export LC_ALL=ja_JP.UTF-8
 
 # PostgreSQL
 export PGDATA=/usr/local/var/postgres
+export PATH=/usr/local/Cellar/postgresql/11.1/bin/:$PATH
 
 # User configuration
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
