@@ -4,7 +4,7 @@
 
 ;; Macの場合
 (when (equal system-type 'darwin)
-  (require 'cask)
+  (require 'cask "/usr/local/opt/cask/cask.el")
 )
 ;; Linuxの場合
 (when (equal system-type 'gnu/linux)
