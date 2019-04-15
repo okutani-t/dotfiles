@@ -131,7 +131,8 @@
 ;; git gutter+
 (depends-on "git-gutter+")
 
-;; magithub
+;; magit
+(depends-on "magit-popup")
 (depends-on "magithub")
 
 ;; import zsh path

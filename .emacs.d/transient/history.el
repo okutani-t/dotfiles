@@ -1,1 +1,1 @@
-nil
+((magit-pull nil))
