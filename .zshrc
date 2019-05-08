@@ -72,6 +72,9 @@ alias fuck='eval "$(thefuck --alias)"'
 # gnu-sed
 alias sed='gsed'
 
+# ssh-add
+eval "$(ssh-add -K ~/.ssh/id_rsa)"
+
 # hub
 function git(){hub "$@"}
 
@@ -165,3 +168,4 @@ function peco-select-history() {
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
+export PATH="/usr/local/opt/libxml2/bin:$PATH"

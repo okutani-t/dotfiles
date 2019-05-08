@@ -1,1 +1,0 @@
-((magit-pull nil))
