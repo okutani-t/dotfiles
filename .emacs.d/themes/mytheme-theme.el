@@ -1,4 +1,4 @@
-;; theme
+;;; theme
 ;; http://syohex.hatenablog.com/entry/20121211/1355231365
 
 (deftheme mytheme

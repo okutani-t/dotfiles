@@ -1,6 +1,6 @@
-;; web-mode
+;;; web-mode
 
-(require 'web-mode)
+(use-package web-mode)
 
 ;;; 適用する拡張子
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))

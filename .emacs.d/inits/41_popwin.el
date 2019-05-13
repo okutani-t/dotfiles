@@ -1,20 +1,16 @@
 ;;; popwin
 ;; https://git.framasoft.org/distopico/distopico-dotemacs/blob/3d4adf0d21d9ed49e9ce8072672916e0c41cdbc6/emacs/modes/conf-popwin.el
 
-(require 'popwin)
+(use-package popwin)
+
 (popwin-mode 1)
 
-(setq display-buffer-function 'popwin:display-buffer)
-(setq popwin:popup-window-position 'bottom)
+(setq pop-up-windows nil)
 
 ;; helm
-(push '("^\\*helm" :regexp t :height 10) popwin:special-display-config)
-;; helm rdefs
+(push '("^\\*helm" :regexp t :height 20) popwin:special-display-config)
 (push '("^\\*helm-rdefs" :regexp t :height 20) popwin:special-display-config)
 
-;; Direx
-(push '(direx:direx-mode :position left :width 35 :dedicated t)
-      popwin:special-display-config)
 ;; Flycheck
 (push '(flycheck-error-list-mode :stick t) popwin:special-display-config)
 ;; metahelp
@@ -23,8 +19,6 @@
 (push '("*quickrun*" :height 10) popwin:special-display-config)
 ;; eshell
 (push '("*eshell*" :height 10) popwin:special-display-config)
-;; helm swoop
-(push '("^\\*Helm Swoop\*" :height 10) popwin:special-display-config)
 ;; grep
 (push '("*grep*" :noselect t :height 10) popwin:special-display-config)
 ;; undo-tree

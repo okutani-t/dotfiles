@@ -1,7 +1,12 @@
-;; helm
+;;; helm
 
-;; helm設定
-(require 'helm)
+(use-package helm)
+(use-package helm-swoop)
+(use-package helm-git-grep)
+(use-package helm-ls-git)
+(use-package helm-descbinds)
+(use-package helm-rdefs)
+
 (require 'helm-mode)
 (require 'helm-config)
 (require 'helm-rdefs)
@@ -50,5 +55,4 @@
 (setq helm-multi-swoop-edit-save t)
 
 ;; helm migemo
-(require 'migemo)
 (helm-migemo-mode 1)

@@ -1,7 +1,7 @@
-;; drag-stuff
+;;; drag-stuff
 ;; https://github.com/rejeep/drag-stuff.el
 
-(require 'drag-stuff)
+(use-package drag-stuff)
 (drag-stuff-global-mode t)
 
 (bind-key "M-p" 'drag-stuff-up)

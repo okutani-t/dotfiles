@@ -1,5 +1,10 @@
 ;;; ruby-mode
-(require 'ruby-mode)
+
+(use-package ruby-mode)
+(use-package rubocop)
+(use-package ruby-electric)
+(use-package ruby-end)
+(use-package rspec-mode)
 
 ;; マジックコメント（# coding: utf-8）停止
 (custom-set-variables

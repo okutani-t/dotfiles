@@ -1,6 +1,6 @@
 ;; auto-complete
 
-(require 'auto-complete)
+(use-package auto-complete)
 (require 'auto-complete-config)
 
 (ac-config-default)
@@ -13,6 +13,3 @@
 
 ;; 補完メニュー表示時にC-n/C-pで補完候補選択
 (setq ac-use-menu-map t)
-;; 曖昧マッチ
-;; fuzzy.elが必要
-;; (setq ac-use-fuzzy t)

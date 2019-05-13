@@ -1,5 +1,6 @@
 ;; helm etags plus
-(require 'helm-etags-plus)
+
+(use-package helm-etags-plus)
 
 (bind-key* "M-." 'helm-etags-plus-select)
 (bind-key* "M-*" 'helm-etags-plus-history)
