@@ -1,5 +1,7 @@
 ;; anzu
 
+(use-package anzu)
+
 (global-anzu-mode +1)
 
 (custom-set-variables

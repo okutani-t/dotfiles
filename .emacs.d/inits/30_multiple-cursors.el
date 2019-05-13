@@ -1,5 +1,7 @@
-(require 'multiple-cursors)
-(require 'smartrep)
+;;; multiple-cursors
+
+(use-package multiple-cursors)
+(use-package smartrep)
 
 (declare-function smartrep-define-key "smartrep")
 

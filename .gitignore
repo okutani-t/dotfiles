@@ -2,7 +2,7 @@
 .DS_Store
 a.out
 
-# for ~/dotfiles/.gitignore
+# for ~/dotfiles/.emacs.d
 .emacs.d/vendor/
 .emacs.d/elpa/
 .emacs.d/elisp/
@@ -11,8 +11,8 @@ a.out
 .emacs.d/bookmarks
 .emacs.d/history
 .emacs.d/tramp
-.emacs.d/.cask
 .emacs.d/recentf*
+.emacs.d/.recentf*
 .emacs.d/flycheck_*
 .emacs.d/*.elc
 .emacs.d/projectile-*
@@ -23,5 +23,6 @@ a.out
 .emacs.d/eshell/
 .emacs.d/.mc-lists.el
 .emacs.d/ac-comphist.dat
-.emacs.d/.recentf
 .emacs.d/magithub/*
+.emacs.d/straight/
+.emacs.d/transient/

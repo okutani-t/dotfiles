@@ -1,6 +1,7 @@
 ;; rainbow-mode
 
-(require 'rainbow-mode)
+(use-package rainbow-mode)
+
 (add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'scss-mode-hook 'rainbow-mode)
 (add-hook 'php-mode-hook 'rainbow-mode)

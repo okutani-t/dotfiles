@@ -9,10 +9,7 @@
 ;;C-x C-fで開ける種類を増やす
 (ffap-bindings)
 
-;; 行の先頭でC-kを一回押すだけで行全体を消去する
-(setq kill-whole-line t)
-
-;; 画面縦分割と移動をM-t一つで行う(C-x 3 C-x o --> C-t)
+;; 画面縦分割と移動をC-t一つで行う(C-x 3 C-x o --> C-t)
 (defun other-window-or-split ()
   (interactive)
   (when (one-window-p)
@@ -31,7 +28,7 @@
 ;; yank設定→なぜかたまに無効になるため
 (bind-key "C-y" 'yank)
 
-;; 1行コピーをおこなうコマンド
+;; 1行コピーをM-kでおこなう
 (defun copy-line (&optional arg)
   (interactive "p")
   (copy-region-as-kill

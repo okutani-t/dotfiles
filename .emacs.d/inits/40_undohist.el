@@ -1,4 +1,5 @@
+;;; undohist
 ;; undohist undoを永続化する
 
-(require 'undohist)
+(use-package undohist)
 (undohist-initialize)

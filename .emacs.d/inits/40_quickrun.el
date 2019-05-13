@@ -1,6 +1,6 @@
-;; quickrun
+;;; quickrun
 ;; https://github.com/syohex/emacs-quickrun
 
-(require 'quickrun)
+(use-package quickrun)
 
 (bind-key "<f5>" 'quickrun)
