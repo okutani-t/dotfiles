@@ -12,8 +12,7 @@
          ("C-x C-g" . magit-status)
          ("C-x M-g" . magit-dispatch-popup))
   :config
-  (setq magit-refs-show-commit-count 'all
-        magit-log-buffer-file-locked t
+  (setq magit-log-buffer-file-locked t
         magit-revision-show-gravatars nil
         ;; M-x magit-status -> y 時のブランチ切り替えをEnterでできるようにする
         magit-visit-ref-behavior '(checkout-any focus-on-ref)))

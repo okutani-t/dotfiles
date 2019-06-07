@@ -73,7 +73,7 @@ alias fuck='eval "$(thefuck --alias)"'
 alias sed='gsed'
 
 # ssh-add
-eval "$(ssh-add -K ~/.ssh/id_rsa)"
+eval "$(ssh-add -K ~/.ssh/id_rsa > /dev/null 2>&1)"
 
 # hub
 function git(){hub "$@"}
