@@ -15,6 +15,11 @@
 (add-to-list 'auto-mode-alist '("\\.twig$"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js[x]?$" . web-mode))
+
+;; 拡張子 .js でもJSX編集モードに
+(setq web-mode-content-types-alist
+      '(("jsx" . "\\.js[x]?\\'")))
 
 ;;; インデント数
 (defun web-mode-hook ()
@@ -26,19 +31,6 @@
   (setq web-mode-php-indent-offset 4)
   )
 (add-hook 'web-mode-hook 'web-mode-hook)
-
-;; 手動インデント切り替え
-;; M-x web-mode-indent からインデント数を入力
-(defun web-mode-indent (num)
-  (interactive "nIndent: ")
-  (setq web-mode-markup-indent-offset num)
-  (setq web-mode-css-indent-offset num)
-  (setq web-mode-style-padding num)
-  (setq web-mode-code-indent-offset num)
-  (setq web-mode-script-padding num)
-  (setq web-mode-block-padding num)
-  )
-(web-mode-indent 4)
 
 ;;色の設定
 (custom-set-faces
