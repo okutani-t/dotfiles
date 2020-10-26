@@ -2,7 +2,6 @@
 
 (use-package helm)
 (use-package helm-swoop)
-(use-package helm-git-grep)
 (use-package helm-ls-git)
 (use-package helm-descbinds)
 (use-package helm-rdefs)
@@ -43,7 +42,6 @@
 (bind-key "C-x C-d" 'helm-find-files)
 (bind-key "C-x C-f" 'helm-for-files)
 (bind-key* "C-c C-l" 'helm-ls-git-ls)
-(bind-key "C-c C-g" 'helm-git-grep)
 (bind-key "TAB" 'helm-execute-persistent-action helm-find-files-map)
 (bind-key "TAB" 'helm-execute-persistent-action helm-read-file-map)
 
