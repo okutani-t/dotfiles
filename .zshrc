@@ -21,6 +21,13 @@ export PATH=$PATH:/usr/local/go/bin
 # rbenv
 eval "$(rbenv init -)"
 
+# pyenv
+export PYENV_ROOT=${HOME}/.pyenv
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH=${PYENV_ROOT}/bin:$PATH
+    eval "$(pyenv init -)"
+fi
+
 # emacs cask path
 export PATH=$PATH:$HOME/.cask/bin
 

@@ -62,6 +62,7 @@ formulas=(
     heroku
     awscli
     redis
+    gcc
 )
 
 "brew tap..."
