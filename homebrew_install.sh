@@ -67,6 +67,7 @@ formulas=(
 
 "brew tap..."
 brew tap sanemat/font
+brew tap heroku/brew
 
 echo "start brew install apps..."
 for formula in "${formulas[@]}"; do
