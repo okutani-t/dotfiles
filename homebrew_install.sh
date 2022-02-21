@@ -19,7 +19,6 @@ formulas=(
     curl
     tree
     openssl
-    z
     colordiff
     "--without-etcdir zsh"
     zsh-completions

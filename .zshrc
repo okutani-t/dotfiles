@@ -46,7 +46,6 @@ alias vi=vim
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias mkdir='mkdir -p'
 ## sudoのあとにaliasを有効にする
 alias sudo='sudo '
 
@@ -64,17 +63,6 @@ alias gb='git branch'
 alias gpl='git pull'
 alias gps='git push'
 alias gl='git l'
-
-# vagrant
-alias vup='vagrant up'
-alias vssh='vagrant ssh'
-alias vhalt='vagrant halt'
-alias vdestroy='vagrant destroy'
-alias vreload='vagrant reload'
-alias vst='vagrant status'
-
-# thefuck
-alias fuck='eval "$(thefuck --alias)"'
 
 # gnu-sed
 alias sed='gsed'
@@ -132,20 +120,6 @@ fpath=(/path/to/homebrew/share/zsh-completions $fpath)
 
 autoload -U compinit
 compinit -u
-
-# z.sh利用
-case ${OSTYPE} in
-  darwin*)
-    # mac
-    . `brew --prefix`/etc/profile.d/z.sh
-    function precmd () {
-      _z --add "$(pwd -P)"
-    }
-    ;;
-  linux*)
-    # linux
-    ;;
-esac
 
 # zsh: permission denied
 export MAILCHECK=0
