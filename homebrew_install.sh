@@ -25,44 +25,37 @@ formulas=(
     zsh-completions
     "--with-cocoa --srgb emacs"
     cask
-    ansible
     peco
     hub
     tig
-    node
-    python3
-    lua
-    "vim --with-lua"
     mysql
     postgresql
     sqlite
-    psysh
+    yarn
+    nodebrew
+    python3
+    lua
+    "vim --with-lua"
     rbenv
     ruby-build
     rbenv-gem-rehash
     rbenv-default-gems
     ricty
-    php
-    composer
     markdown
     ctags
     ssh-copy-id
-    phantomjs
     mecab
     diff-so-fancy
     "cmigemo --HEAD"
-    thefuck
-    the_silver_searcher
     memcached
     imagemagick@6
+    gcc
     libxml2
     libxslt
     libiconv
-    yarn
     heroku
     awscli
     redis
-    gcc
 )
 
 "brew tap..."
