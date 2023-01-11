@@ -22,7 +22,6 @@ fi
 
 # oh-my-zsh
 ZSH=$HOME/dotfiles/oh-my-zsh
-export ZSH="$HOME/.oh-my-zsh"
 # oh-my-zsh theme
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="candy"
