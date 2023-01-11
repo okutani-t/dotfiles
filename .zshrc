@@ -1,5 +1,33 @@
-source $HOME/dotfiles/.require_oh-my-zsh
-[ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
+# for M1 Mac
+typeset -U path PATH
+path=(
+  /opt/homebrew/bin(N-/)
+  /opt/homebrew/sbin(N-/)
+  /usr/bin
+  /usr/sbin
+  /bin
+  /sbin
+  /usr/local/bin(N-/)
+  /usr/local/sbin(N-/)
+  /Library/Apple/usr/bin
+)
+
+# zsh-completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# oh-my-zsh
+ZSH=$HOME/dotfiles/oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
+# oh-my-zsh theme
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="candy"
+plugins=(git rails ruby)
+source $ZSH/oh-my-zsh.sh
 
 # set locale
 export LANG=ja_JP.UTF-8
@@ -13,10 +41,10 @@ export PATH=/usr/local/Cellar/postgresql/11.1/bin/:$PATH
 export PATH="$HOME/.rbenv/shims:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/sbin:$PATH"
 
-# golang
-export GOPATH=$HOME/code/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
+# goenv
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
 
 # rbenv
 eval "$(rbenv init -)"
@@ -115,12 +143,6 @@ setopt nonomatch
 bindkey -e
 # bindkey -v
 
-# zsh-completionsの設定
-fpath=(/path/to/homebrew/share/zsh-completions $fpath)
-
-autoload -U compinit
-compinit -u
-
 # zsh: permission denied
 export MAILCHECK=0
 
@@ -150,3 +172,6 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
+
+# for M1 Mac Homebrew path setting
+eval "$(/opt/homebrew/bin/brew shellenv)"
