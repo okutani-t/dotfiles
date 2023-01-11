@@ -20,7 +20,7 @@ formulas=(
     tree
     openssl
     colordiff
-    "--without-etcdir zsh"
+    zsh
     zsh-completions
     "--with-cocoa --srgb emacs"
     cask
@@ -43,9 +43,7 @@ formulas=(
     markdown
     ctags
     ssh-copy-id
-    mecab
     diff-so-fancy
-    "cmigemo --HEAD"
     memcached
     imagemagick@6
     gcc
