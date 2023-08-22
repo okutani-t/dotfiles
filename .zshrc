@@ -48,18 +48,8 @@ eval "$(goenv init -)"
 # rbenv
 eval "$(rbenv init -)"
 
-# pyenv
-export PYENV_ROOT=${HOME}/.pyenv
-if [ -d "${PYENV_ROOT}" ]; then
-    export PATH=${PYENV_ROOT}/bin:$PATH
-    eval "$(pyenv init -)"
-fi
-
 # emacs cask path
 export PATH=$PATH:$HOME/.cask/bin
-
-# nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # imagemagick
 export PATH=/usr/local/opt/imagemagick@6/bin:$PATH
@@ -174,3 +164,20 @@ export PATH="/usr/local/opt/libxml2/bin:$PATH"
 
 # for M1 Mac Homebrew path setting
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/shims:$PATH"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+# alias python='python3'
+
+# zlib(for pyenv)
+export LDFLAGS="-L/opt/homebrew/opt/zlib/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/zlib/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
+
+# nodeenv
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init -)"
