@@ -42,11 +42,14 @@
 (setq frame-title-format
       (format "%%f - Emacs@%s" (system-name)))
 
-;; 行番号表示
-(global-linum-mode t)
-(set-face-attribute 'linum nil
-                    :foreground "#BBB"
-                    :height 0.9)
+;; display line numbers
+(if (version<= "26.0.50" emacs-version)
+    (progn
+      (global-display-line-numbers-mode)
+      (set-face-attribute 'line-number nil
+                          :foreground "#BBB")
+      (set-face-attribute 'line-number-current-line nil
+                          :foreground "#BBB")))
 
 ;; 行番号フォーマット
 (setq linum-format "%4d")

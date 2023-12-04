@@ -6,8 +6,8 @@
 (use-package helm-descbinds)
 (use-package helm-rdefs)
 
+(require 'helm)
 (require 'helm-mode)
-(require 'helm-config)
 (require 'helm-rdefs)
 
 ;; 自動補完を無効にする
