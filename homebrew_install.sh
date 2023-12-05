@@ -20,9 +20,11 @@ formulas=(
     tree
     openssl
     colordiff
+    cmigemo
+    ctags
     zsh
     zsh-completions
-    "--with-cocoa --srgb emacs"
+    "--cask emacs"
     cask
     peco
     hub
@@ -34,14 +36,10 @@ formulas=(
     nodebrew
     python3
     lua
-    "vim --with-lua"
+    vim
     rbenv
     ruby-build
-    rbenv-gem-rehash
-    rbenv-default-gems
-    ricty
     markdown
-    ctags
     ssh-copy-id
     diff-so-fancy
     memcached
@@ -54,10 +52,6 @@ formulas=(
     awscli
     redis
 )
-
-"brew tap..."
-brew tap sanemat/font
-brew tap heroku/brew
 
 echo "start brew install apps..."
 for formula in "${formulas[@]}"; do
