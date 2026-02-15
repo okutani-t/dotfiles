@@ -30,11 +30,15 @@ chmod +x homebrew_install.sh install.sh
   - Initializes git submodules (including `oh-my-zsh`)
   - Symlinks dotfiles from `~/dotfiles` to your home directory
   - Creates `~/.gitconfig.local` from template if missing
+  - Links global AI config files to dotfiles-managed files:
+    - `~/.codex/AGENTS.md -> ~/dotfiles/ai/codex/AGENTS.md`
+    - `~/.agents/skills/pr-review/SKILL.md -> ~/dotfiles/ai/agents/skills/pr-review/SKILL.md`
 
 ## Important Notes
 
 - `install.sh` currently assumes this repository is located at `~/dotfiles`.
 - Existing files such as `~/.zshrc` may be replaced by symlinks.
+- Existing global AI config files at the paths above will also be replaced by symlinks.
 - Review scripts before running them on non-personal machines.
 
 ## Personalization
