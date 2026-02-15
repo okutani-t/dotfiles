@@ -6,6 +6,20 @@ log_step() { printf '\n[STEP] %s\n' "$1"; }
 log_info() { printf '  - %s\n' "$1"; }
 log_done() { printf '\n[DONE] %s\n' "$1"; }
 
+# 指定ファイルを通常ファイルとして同期する（リンクは作らない）
+sync_regular_file() {
+    local src="$1"
+    local dst="$2"
+
+    mkdir -p "$(dirname "$dst")"
+
+    if [ -L "$dst" ]; then
+        rm -f "$dst"
+    fi
+
+    cp -f "$src" "$dst"
+}
+
 # 指定パスがシンボリックリンク/通常ファイルなら退避して実ディレクトリ化する
 ensure_real_dir() {
     local dir="$1"
@@ -23,7 +37,7 @@ ensure_real_dir() {
 # 実行場所のディレクトリを取得
 THIS_DIR=$(cd "$(dirname "$0")"; pwd)
 
-cd $THIS_DIR
+cd "$THIS_DIR"
 log_step "Initialize submodules"
 git submodule init
 git submodule update
@@ -42,7 +56,7 @@ for f in .??*; do
     [ "$f" = ".gitconfig.local.template" ] && continue
     [ "$f" = ".gitmodules" ] && continue
 
-    ln -snf ~/dotfiles/"$f" ~/
+    ln -snf "$THIS_DIR/$f" ~/
     log_info "linked ~/$f"
 done
 
@@ -50,7 +64,7 @@ log_step "Ensure local git config"
 if [ -e ~/.gitconfig.local ]; then
     log_info "exists ~/.gitconfig.local"
 else
-    cp ~/dotfiles/.gitconfig.local.template ~/.gitconfig.local
+    cp "$THIS_DIR/.gitconfig.local.template" ~/.gitconfig.local
     log_info "created ~/.gitconfig.local from template"
 fi
 
@@ -61,27 +75,32 @@ ensure_real_dir ~/.codex/skills
 mkdir -p ~/.codex/skills/pr-review
 mkdir -p ~/.codex/skills/pr-review/agents
 
-if [ -L ~/dotfiles/ai/agents/skills/pr-review/SKILL.md ]; then
-    echo "[ERROR] ~/dotfiles/ai/agents/skills/pr-review/SKILL.md must be a regular file."
+if [ -L "$THIS_DIR/ai/codex/skills/pr-review/SKILL.md" ]; then
+    echo "[ERROR] $THIS_DIR/ai/codex/skills/pr-review/SKILL.md must be a regular file."
     exit 1
 fi
 
-if [ ! -f ~/dotfiles/ai/agents/skills/pr-review/SKILL.md ]; then
-    echo "[ERROR] ~/dotfiles/ai/agents/skills/pr-review/SKILL.md does not exist."
+if [ ! -f "$THIS_DIR/ai/codex/AGENTS.md" ]; then
+    echo "[ERROR] $THIS_DIR/ai/codex/AGENTS.md does not exist."
     exit 1
 fi
 
-if [ ! -f ~/dotfiles/ai/agents/skills/pr-review/agents/openai.yaml ]; then
-    echo "[ERROR] ~/dotfiles/ai/agents/skills/pr-review/agents/openai.yaml does not exist."
+if [ ! -f "$THIS_DIR/ai/codex/skills/pr-review/SKILL.md" ]; then
+    echo "[ERROR] $THIS_DIR/ai/codex/skills/pr-review/SKILL.md does not exist."
     exit 1
 fi
 
-ln -snf ~/dotfiles/ai/codex/AGENTS.md ~/.codex/AGENTS.md
-ln -snf ~/dotfiles/ai/agents/skills/pr-review/SKILL.md ~/.codex/skills/pr-review/SKILL.md
-ln -snf ~/dotfiles/ai/agents/skills/pr-review/agents/openai.yaml ~/.codex/skills/pr-review/agents/openai.yaml
+if [ ! -f "$THIS_DIR/ai/codex/skills/pr-review/agents/openai.yaml" ]; then
+    echo "[ERROR] $THIS_DIR/ai/codex/skills/pr-review/agents/openai.yaml does not exist."
+    exit 1
+fi
+
+ln -snf "$THIS_DIR/ai/codex/AGENTS.md" ~/.codex/AGENTS.md
+sync_regular_file "$THIS_DIR/ai/codex/skills/pr-review/SKILL.md" ~/.codex/skills/pr-review/SKILL.md
+sync_regular_file "$THIS_DIR/ai/codex/skills/pr-review/agents/openai.yaml" ~/.codex/skills/pr-review/agents/openai.yaml
 log_info "linked ~/.codex/AGENTS.md"
-log_info "linked ~/.codex/skills/pr-review/SKILL.md"
-log_info "linked ~/.codex/skills/pr-review/agents/openai.yaml"
+log_info "copied ~/.codex/skills/pr-review/SKILL.md"
+log_info "copied ~/.codex/skills/pr-review/agents/openai.yaml"
 
 cat << END
 

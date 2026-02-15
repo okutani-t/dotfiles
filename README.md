@@ -32,14 +32,16 @@ chmod +x homebrew_install.sh install.sh
   - Creates `~/.gitconfig.local` from template if missing
   - Links global AI config files to dotfiles-managed files:
     - `~/.codex/AGENTS.md -> ~/dotfiles/ai/codex/AGENTS.md`
-    - `~/.codex/skills/pr-review/SKILL.md -> ~/dotfiles/ai/agents/skills/pr-review/SKILL.md`
-    - `~/.codex/skills/pr-review/agents/openai.yaml -> ~/dotfiles/ai/agents/skills/pr-review/agents/openai.yaml`
+  - Copies skill files as regular files (not symlinks):
+    - `~/dotfiles/ai/codex/skills/pr-review/SKILL.md -> ~/.codex/skills/pr-review/SKILL.md`
+    - `~/dotfiles/ai/codex/skills/pr-review/agents/openai.yaml -> ~/.codex/skills/pr-review/agents/openai.yaml`
 
 ## Important Notes
 
-- `install.sh` currently assumes this repository is located at `~/dotfiles`.
+- `install.sh` resolves source files from the script directory, so it works even if this repository is not at `~/dotfiles`.
 - Existing files such as `~/.zshrc` may be replaced by symlinks.
-- Existing global AI config files at the paths above will also be replaced by symlinks.
+- Existing global AI config files at the paths above may be replaced (AGENTS.md is symlinked, skill files are copied as regular files).
+- PR review skill is invoked by explicitly requesting `$pr-review`.
 - Review scripts before running them on non-personal machines.
 
 ## Personalization
