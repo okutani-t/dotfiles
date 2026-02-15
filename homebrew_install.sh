@@ -9,10 +9,6 @@ which brew >/dev/null 2>&1 && brew doctor
 echo "run brew update..."
 which brew >/dev/null 2>&1 && brew update
 
-echo "ok. run brew upgrade..."
-
-which brew >/dev/null 2>&1 && brew upgrade
-
 formulas=(
     git
     wget
@@ -25,7 +21,6 @@ formulas=(
     zsh
     zsh-completions
     "--cask emacs"
-    cask
     peco
     hub
     tig
@@ -55,7 +50,20 @@ formulas=(
 
 echo "start brew install apps..."
 for formula in "${formulas[@]}"; do
-    brew install $formula || brew upgrade $formula
+    if [[ "$formula" == --cask* ]]; then
+        cask="${formula#--cask }"
+        if brew list --cask --versions "$cask" >/dev/null 2>&1; then
+            brew upgrade --cask "$cask"
+        else
+            brew install --cask "$cask"
+        fi
+    else
+        if brew list --formula --versions "$formula" >/dev/null 2>&1; then
+            brew upgrade "$formula"
+        else
+            brew install "$formula"
+        fi
+    fi
 done
 
 brew cleanup

@@ -1,3 +1,8 @@
+# homebrew
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # for M1 Mac
 typeset -U path PATH
 path=(
@@ -5,6 +10,7 @@ path=(
   /opt/homebrew/sbin(N-/)
   /usr/bin
   /usr/sbin
+  /usr/local/bin
   /bin
   /sbin
   /usr/local/bin(N-/)
@@ -15,9 +21,6 @@ path=(
 # zsh-completions
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-  autoload -Uz compinit
-  compinit
 fi
 
 # oh-my-zsh
@@ -32,21 +35,19 @@ source $ZSH/oh-my-zsh.sh
 export LANG=ja_JP.UTF-8
 export LC_ALL=ja_JP.UTF-8
 
-# PostgreSQL
-export PGDATA=/usr/local/var/postgres
-export PATH=/usr/local/Cellar/postgresql/11.1/bin/:$PATH
-
 # User configuration
-export PATH="$HOME/.rbenv/shims:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # goenv
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
+if command -v goenv >/dev/null 2>&1; then
+  eval "$(goenv init -)"
+fi
 
 # rbenv
-eval "$(rbenv init -)"
+if command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init - zsh)"
+fi
 
 # emacs cask path
 export PATH=$PATH:$HOME/.cask/bin
@@ -162,9 +163,6 @@ zle -N peco-select-history
 bindkey '^r' peco-select-history
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
 
-# for M1 Mac Homebrew path setting
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/shims:$PATH"
@@ -181,3 +179,14 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig"
 # nodeenv
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/okutani/.docker/completions $fpath)
+
+# Stripe
+fpath=(~/.stripe $fpath)
+
+# 補完の初期化は1回だけ実行する
+autoload -Uz compinit && compinit -i
+
+export PATH="$PATH:$HOME/flutter/bin"
