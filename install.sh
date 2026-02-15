@@ -20,6 +20,12 @@ done
 
 [ -e ~/.gitconfig.local ] || cp ~/dotfiles/.gitconfig.local.template ~/.gitconfig.local
 
+# Codex/Agents のグローバル設定を dotfiles 管理に寄せる
+mkdir -p ~/.codex
+mkdir -p ~/.agents/skills/pr-review
+ln -snfv ~/dotfiles/ai/codex/AGENTS.md ~/.codex/AGENTS.md
+ln -snfv ~/dotfiles/ai/agents/skills/pr-review/SKILL.md ~/.agents/skills/pr-review/SKILL.md
+
 cat << END
 
 **************************************************
