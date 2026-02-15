@@ -1,4 +1,0 @@
-interface:
-  display_name: "PR Review"
-  short_description: "Review changed diff and report prioritized findings"
-  default_prompt: "Use $pr-review to review this PR diff and list P0/P1/P2 findings."

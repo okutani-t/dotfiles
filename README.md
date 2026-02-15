@@ -34,7 +34,6 @@ chmod +x homebrew_install.sh install.sh
     - `~/.codex/AGENTS.md -> ~/dotfiles/ai/codex/AGENTS.md`
   - Copies skill files as regular files (not symlinks):
     - `~/dotfiles/ai/codex/skills/pr-review/SKILL.md -> ~/.codex/skills/pr-review/SKILL.md`
-    - `~/dotfiles/ai/codex/skills/pr-review/agents/openai.yaml -> ~/.codex/skills/pr-review/agents/openai.yaml`
 
 ## Important Notes
 

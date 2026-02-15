@@ -73,7 +73,6 @@ log_step "Link global Codex files"
 mkdir -p ~/.codex
 ensure_real_dir ~/.codex/skills
 mkdir -p ~/.codex/skills/pr-review
-mkdir -p ~/.codex/skills/pr-review/agents
 
 if [ -L "$THIS_DIR/ai/codex/skills/pr-review/SKILL.md" ]; then
     echo "[ERROR] $THIS_DIR/ai/codex/skills/pr-review/SKILL.md must be a regular file."
@@ -90,17 +89,10 @@ if [ ! -f "$THIS_DIR/ai/codex/skills/pr-review/SKILL.md" ]; then
     exit 1
 fi
 
-if [ ! -f "$THIS_DIR/ai/codex/skills/pr-review/agents/openai.yaml" ]; then
-    echo "[ERROR] $THIS_DIR/ai/codex/skills/pr-review/agents/openai.yaml does not exist."
-    exit 1
-fi
-
 ln -snf "$THIS_DIR/ai/codex/AGENTS.md" ~/.codex/AGENTS.md
 sync_regular_file "$THIS_DIR/ai/codex/skills/pr-review/SKILL.md" ~/.codex/skills/pr-review/SKILL.md
-sync_regular_file "$THIS_DIR/ai/codex/skills/pr-review/agents/openai.yaml" ~/.codex/skills/pr-review/agents/openai.yaml
 log_info "linked ~/.codex/AGENTS.md"
 log_info "copied ~/.codex/skills/pr-review/SKILL.md"
-log_info "copied ~/.codex/skills/pr-review/agents/openai.yaml"
 
 cat << END
 
