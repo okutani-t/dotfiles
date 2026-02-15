@@ -54,12 +54,12 @@ else
     log_info "created ~/.gitconfig.local from template"
 fi
 
-# Codex/Agents のグローバル設定を dotfiles 管理に寄せる
-log_step "Link global Codex/Agents files"
+# Codex のグローバル設定を dotfiles 管理に寄せる
+log_step "Link global Codex files"
 mkdir -p ~/.codex
-mkdir -p ~/.agents
-ensure_real_dir ~/.agents/skills
-mkdir -p ~/.agents/skills/pr-review
+ensure_real_dir ~/.codex/skills
+mkdir -p ~/.codex/skills/pr-review
+mkdir -p ~/.codex/skills/pr-review/agents
 
 if [ -L ~/dotfiles/ai/agents/skills/pr-review/SKILL.md ]; then
     echo "[ERROR] ~/dotfiles/ai/agents/skills/pr-review/SKILL.md must be a regular file."
@@ -71,10 +71,17 @@ if [ ! -f ~/dotfiles/ai/agents/skills/pr-review/SKILL.md ]; then
     exit 1
 fi
 
+if [ ! -f ~/dotfiles/ai/agents/skills/pr-review/agents/openai.yaml ]; then
+    echo "[ERROR] ~/dotfiles/ai/agents/skills/pr-review/agents/openai.yaml does not exist."
+    exit 1
+fi
+
 ln -snf ~/dotfiles/ai/codex/AGENTS.md ~/.codex/AGENTS.md
-ln -snf ~/dotfiles/ai/agents/skills/pr-review/SKILL.md ~/.agents/skills/pr-review/SKILL.md
+ln -snf ~/dotfiles/ai/agents/skills/pr-review/SKILL.md ~/.codex/skills/pr-review/SKILL.md
+ln -snf ~/dotfiles/ai/agents/skills/pr-review/agents/openai.yaml ~/.codex/skills/pr-review/agents/openai.yaml
 log_info "linked ~/.codex/AGENTS.md"
-log_info "linked ~/.agents/skills/pr-review/SKILL.md"
+log_info "linked ~/.codex/skills/pr-review/SKILL.md"
+log_info "linked ~/.codex/skills/pr-review/agents/openai.yaml"
 
 cat << END
 

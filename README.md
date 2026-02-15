@@ -32,7 +32,8 @@ chmod +x homebrew_install.sh install.sh
   - Creates `~/.gitconfig.local` from template if missing
   - Links global AI config files to dotfiles-managed files:
     - `~/.codex/AGENTS.md -> ~/dotfiles/ai/codex/AGENTS.md`
-    - `~/.agents/skills/pr-review/SKILL.md -> ~/dotfiles/ai/agents/skills/pr-review/SKILL.md`
+    - `~/.codex/skills/pr-review/SKILL.md -> ~/dotfiles/ai/agents/skills/pr-review/SKILL.md`
+    - `~/.codex/skills/pr-review/agents/openai.yaml -> ~/dotfiles/ai/agents/skills/pr-review/agents/openai.yaml`
 
 ## Important Notes
 

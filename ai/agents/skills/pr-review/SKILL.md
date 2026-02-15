@@ -1,14 +1,14 @@
 ---
 name: pr-review
-description: Explicit command-only PR review skill. Trigger only when user runs /pr-review.
+description: Explicit trigger PR review skill. Trigger when user requests $pr-review.
 ---
 
 # PR-REVIEW SKILL (Global)
 
 Explicit PR review skill.
-Runs only when invoked via:
+Runs when explicitly invoked with:
 
-    /pr-review
+    $pr-review
 
 AI-first, short, and strict.
 
@@ -95,13 +95,13 @@ Respect:
 
 ## 🏷 Output Format
 
-### 🔴 P0 — Must Fix
+### 🔴 P0（最優先） — Must Fix
 重大バグ・セキュリティ問題
 
-### 🟡 P1 — Should Fix
+### 🟡 P1（要対応） — Should Fix
 設計改善・将来リスク
 
-### 🟢 P2 — Nice to Have
+### 🟢 P2（改善提案） — Nice to Have
 可読性改善
 
 Each finding must include:
