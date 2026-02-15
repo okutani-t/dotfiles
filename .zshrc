@@ -181,7 +181,7 @@ export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/okutani/.docker/completions $fpath)
+fpath=($HOME/.docker/completions $fpath)
 
 # Stripe
 fpath=(~/.stripe $fpath)

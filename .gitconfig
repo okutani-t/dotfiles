@@ -11,7 +11,7 @@
         grep = auto
 [core]
         editor = vim
-	excludesfile = /Users/okutani/.gitignore_global
+	excludesfile = $HOME/.gitignore_global
 [alias]
         a      = add
         ci     = commit
