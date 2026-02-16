@@ -58,19 +58,24 @@ AI-first, short, and strict.
 - When requested work includes version control operations, execute commands such as `git commit` or `git push` without additional confirmation if they stay within task scope.
   （依頼された作業にバージョン管理操作が含まれる場合、タスク範囲内であれば、`git commit` や `git push` などを追加確認なしで実行すること）
 
-- Approval is required only for:
+- If a required command fails due to sandbox restrictions, rerun it with privilege escalation without additional confirmation when it is within the explicitly requested task scope.
+  （必要なコマンドが sandbox 制約で失敗した場合、ユーザーが明示的に依頼したタスク範囲内であれば、権限昇格での再実行を追加確認なしで行うこと）
+
+- Approval is required only for the following, unless explicitly requested by the user within task scope:
   - File deletions
   - Overwriting configuration files
   - Installing new dependencies
   - Database schema changes
-  - Secret or environment variable modifications
+  - Reading or modifying `.env` files
+  - Non-secret environment variable modifications
 
-  （以下の場合のみ承認を求めること：
+  （以下の場合のみ承認を求めること。ただし、ユーザーがタスク範囲内で明示的に依頼した場合を除く：
    - ファイル削除
    - 設定ファイル上書き
    - 依存追加
    - DBスキーマ変更
-   - 秘匿情報や環境変数の変更）
+   - `.env` の読み取りまたは変更
+   - 秘匿情報を除く環境変数の変更）
 
 ---
 
@@ -90,14 +95,14 @@ AI-first, short, and strict.
 
 ## 🔒 Safety & Boundaries (安全と境界)
 
-- **Data Privacy:** Never read or modify secrets, `.env`, or sensitive personal data.
-  （秘匿情報、環境変数、個人データに触れないこと）
+- **Data Privacy:** Never read or modify secrets or sensitive personal data. Read or modify `.env` only with explicit user approval.
+  （秘匿情報や個人データには触れないこと。`.env` の読み取り・変更は、ユーザーの明示承認がある場合のみ許可する）
 
 - **Destructive Actions:** Ask for explicit permission before performing destructive operations outside the defined execution policy.
   （実行ポリシーで定義された範囲外の破壊的操作は必ず事前に許可を得ること）
 
-- **Dependency Safety:** Confirm before installing new software or packages unless explicitly requested.
-  （明示的に依頼されていない限り、新しいソフトやパッケージのインストールは事前確認を必須とする）
+- **Dependency Safety:** Follow the approval rule above for installing new software or packages.
+  （新しいソフトやパッケージのインストールは、上記の承認ルールに従うこと）
 
 ---
 
@@ -111,6 +116,9 @@ The order of precedence is:
 
 If conflicts occur, follow the higher-priority rule.
 （ルールが衝突した場合は、上位の優先順位に従うこと）
+
+`SKILL.md` is loaded first as an execution workflow, but any rule conflict is resolved by the precedence order above.
+（`SKILL.md` は実行フロー上先に読み込むが、ルール衝突時の解決は上記の優先順位に従う）
 
 ---
 
