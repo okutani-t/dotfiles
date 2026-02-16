@@ -10,7 +10,6 @@ AI-first, short, and strict.
 
 1. **Be accurate over confident:** Prioritize correctness.
    （自信満々な推測より、正確さを優先せよ）
-
 2. **Simple & Maintainable:** Favor simplicity over cleverness. No over-engineering.
    （賢さよりシンプルさを。過剰な設計を避け、保守しやすい案を選べ）
 
@@ -20,105 +19,88 @@ AI-first, short, and strict.
 
 - **Respect Context:** Follow existing patterns, conventions, and directory structures.
   （既存のルール、命名規則、ディレクトリ構造を尊重せよ）
-
-- **Check Root SPEC.md:**
-  If a `SPEC.md` exists in the **project root**, always read and follow it before making decisions.
-  （プロジェクトのルートディレクトリに `SPEC.md` が存在する場合は、必ず参照し、それに従うこと）
-
-- **Minimal Impact:** Keep changes minimal. Do not touch files outside the task scope.
-  （変更は最小限に。タスク範囲外のファイルに無断で触れないこと）
-
+- **Check Root SPEC.md:** If a `SPEC.md` exists in the project root, read and follow it before making decisions.
+  （プロジェクトルートに `SPEC.md` がある場合、判断前に必ず参照して従うこと）
+- **Default Skill Loading:** On every turn, load applicable `SKILL.md` first. If none apply, use the normal workflow.
+  （毎ターン、適用可能な `SKILL.md` を先に読み込むこと。該当がなければ通常フローで進めること）
+- **Minimal Impact:** Keep changes minimal. Do not touch files outside task scope.
+  （変更は最小限にし、タスク範囲外のファイルには触れないこと）
 - **Environment Aware:** Check OS (macOS/Linux/Windows) before suggesting shell commands.
-  （コマンドを提案する前に、必ず実行環境のOSを確認せよ）
-
-- **No Inventions:** Do NOT invent requirements, APIs, or libraries.
-  （要件、仕様、ライブラリを捏造しないこと）
-
-- **Default Skill Loading:**
-  On every turn, load and follow applicable `SKILL.md` instructions first before other workflows.
-  If no applicable skill exists, continue with the normal workflow.
-  （毎ターン、適用可能な `SKILL.md` の指示を他のワークフローより先に読み込み、従うこと。適用可能なスキルがなければ通常フローで継続すること）
-
-- **Whitespace Hygiene:** Do not add trailing whitespace at the end of lines.
+  （コマンド提案前に実行環境OSを確認すること）
+- **No Inventions:** Do not invent requirements, APIs, or libraries.
+  （要件、API、ライブラリを捏造しないこと）
+- **Whitespace Hygiene:** Do not add trailing whitespace.
   （行末に不要な空白を入れないこと）
 
 ---
 
 ## 🤖 Execution Policy (実行ポリシー)
 
-- Non-destructive edits within the explicitly requested task scope may be performed without additional approval.
-  （ユーザーが明示的に依頼したタスク範囲内の非破壊的変更は、追加承認なしで実行してよい）
+- If work is explicitly requested by the user and remains in task scope, proceed without extra chat confirmation.
+  （ユーザーが明示依頼した作業でタスク範囲内なら、チャット上の追加確認なしで進めてよい）
+- Run requested tests (for example `bundle exec rspec`, `yarn test`) directly when non-destructive.
+  （依頼されたテスト実行は非破壊であれば直接実行すること）
+- Run requested version-control operations (for example `git add`, `git commit`, `git push`) directly.
+  （依頼された `git add` / `git commit` / `git push` は直接実行すること）
+- If a required command fails due to sandbox restrictions, rerun with privilege escalation via the platform prompt.
+  （必要コマンドが sandbox 制約で失敗した場合、プラットフォーム承認フローで権限昇格して再実行すること）
 
-- If a task is explicitly requested by the user, assume permission is granted within that scope.
-  （ユーザーが明示的に依頼した場合、そのタスク範囲内では承認済みとみなす）
+### Actions Requiring Explicit User Request (明示依頼が必要な操作)
 
-- When requested work includes running tests, execute commands such as `bundle exec rspec` or `yarn test` without additional confirmation if they stay within task scope and are non-destructive.
-  （依頼された作業にテスト実行が含まれる場合、タスク範囲内かつ非破壊であれば、`bundle exec rspec` や `yarn test` などを追加確認なしで実行すること）
+- File deletions
+- Overwriting configuration files
+- Installing new dependencies
+- Database schema changes
+- Reading or modifying `.env` files
+- Non-secret environment variable modifications
 
-- When requested work includes version control operations, execute commands such as `git commit` or `git push` without additional confirmation if they stay within task scope.
-  （依頼された作業にバージョン管理操作が含まれる場合、タスク範囲内であれば、`git commit` や `git push` などを追加確認なしで実行すること）
-
-- If a required command fails due to sandbox restrictions, rerun it with privilege escalation without additional confirmation when it is within the explicitly requested task scope.
-  （必要なコマンドが sandbox 制約で失敗した場合、ユーザーが明示的に依頼したタスク範囲内であれば、権限昇格での再実行を追加確認なしで行うこと）
-
-- Approval is required only for the following, unless explicitly requested by the user within task scope:
-  - File deletions
-  - Overwriting configuration files
-  - Installing new dependencies
-  - Database schema changes
-  - Reading or modifying `.env` files
-  - Non-secret environment variable modifications
-
-  （以下の場合のみ承認を求めること。ただし、ユーザーがタスク範囲内で明示的に依頼した場合を除く：
-   - ファイル削除
-   - 設定ファイル上書き
-   - 依存追加
-   - DBスキーマ変更
-   - `.env` の読み取りまたは変更
-   - 秘匿情報を除く環境変数の変更）
-
----
-
-## 💬 Language & Communication (言語と対話)
-
-- **Default Language:** Respond in clear and simple **Japanese**.
-  （回答は日本語で行うこと）
-
-- **Source Code Comments:**
-  All comments written inside source code must be in **Japanese**.
-  （ソースコード内に記載するコメントは日本語で記述すること）
-
-- **Code & Logs:** Use **English** for code syntax, commits, and logs unless specified otherwise.
-  （コード構文、コミットメッセージ、ログ等は、指定がない限り英語を使用せよ）
+（以下の操作は、ユーザーの明示依頼がある場合のみ実行可能）
+- ファイル削除
+- 設定ファイル上書き
+- 依存追加
+- DBスキーマ変更
+- `.env` の読み取りまたは変更
+- 秘匿情報を除く環境変数の変更
 
 ---
 
 ## 🔒 Safety & Boundaries (安全と境界)
 
-- **Data Privacy:** Never read or modify secrets or sensitive personal data. Read or modify `.env` only with explicit user approval.
-  （秘匿情報や個人データには触れないこと。`.env` の読み取り・変更は、ユーザーの明示承認がある場合のみ許可する）
+- **Always Prohibited:** Never read or modify secrets or sensitive personal data.
+  （常時禁止：秘匿情報および個人データの読み取り・変更は禁止）
+- **`.env` Exception:** Read or modify `.env` only when explicitly requested by the user.
+  （`.env` 例外：ユーザーの明示依頼がある場合のみ読み取り・変更を許可）
+- **Destructive Actions:** Ask for explicit permission before destructive operations outside this execution policy.
+  （本実行ポリシー外の破壊的操作は、事前に明示許可を得ること）
+- **Dependency Safety:** Follow the execution policy for installing software or packages.
+  （ソフトウェアやパッケージ追加は実行ポリシーに従うこと）
 
-- **Destructive Actions:** Ask for explicit permission before performing destructive operations outside the defined execution policy.
-  （実行ポリシーで定義された範囲外の破壊的操作は必ず事前に許可を得ること）
+---
 
-- **Dependency Safety:** Follow the approval rule above for installing new software or packages.
-  （新しいソフトやパッケージのインストールは、上記の承認ルールに従うこと）
+## 💬 Language & Communication (言語と対話)
+
+- **Default Language:** Respond in clear, simple **Japanese**.
+  （回答は簡潔で分かりやすい日本語で行うこと）
+- **Source Code Comments:** Write source-code comments in **Japanese**.
+  （ソースコード内コメントは日本語で記述すること）
+- **Code & Logs:** Use **English** for code syntax, commit messages, and logs unless otherwise specified.
+  （コード構文、コミットメッセージ、ログは指定がない限り英語を使用すること）
 
 ---
 
 ## ⚖️ Priority & Conflict Resolution (優先順位)
 
-The order of precedence is:
+Order of precedence:
 
-1. **`SPEC.md` in the project root**
-2. **Local `AGENTS.md` in the current directory**
-3. **This Global `AGENTS.md`**
+1. `SPEC.md` in the project root
+2. Local `AGENTS.md` in the current directory
+3. This Global `AGENTS.md`
 
 If conflicts occur, follow the higher-priority rule.
-（ルールが衝突した場合は、上位の優先順位に従うこと）
+（ルールが衝突した場合は上位の優先順位に従うこと）
 
-`SKILL.md` is loaded first as an execution workflow, but any rule conflict is resolved by the precedence order above.
-（`SKILL.md` は実行フロー上先に読み込むが、ルール衝突時の解決は上記の優先順位に従う）
+`SKILL.md` is loaded first as workflow context, but rule conflicts are resolved by the precedence above.
+（`SKILL.md` は実行フロー文脈として先に読み込むが、ルール衝突時は上記優先順位で解決する）
 
 ---
 
@@ -126,4 +108,4 @@ If conflicts occur, follow the higher-priority rule.
 
 When in doubt, choose the option that is:
 **Simpler, Clearer, and Safer.**
-（よりシンプル、より明快、より安全な方を選べ）
+（迷った場合は、よりシンプル・明快・安全な選択を優先する）
