@@ -49,6 +49,10 @@ AI-first, short, and strict.
 
 - To avoid repeated approval prompts for git operations, approve persistent prefix rules in the platform prompt.
   （git 操作の承認プロンプトを減らすため、プラットフォームの承認画面で恒久許可の prefix rule を承認すること）
+- Platform approval dialogs are controlled by the execution environment and cannot be disabled by `AGENTS.md` alone.
+  （プラットフォームの承認ダイアログは実行環境側の制御であり、`AGENTS.md` だけでは無効化できない）
+- When escalation is required for git operations, always include an appropriate `prefix_rule` in the escalation request.
+  （git 操作で権限昇格が必要な場合、昇格リクエストに適切な `prefix_rule` を必ず付けること）
 - Recommended prefix rules:
   - `["git", "add"]`
   - `["git", "commit"]`
