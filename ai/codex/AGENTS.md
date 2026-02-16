@@ -55,6 +55,9 @@ AI-first, short, and strict.
 - When requested work includes running tests, execute commands such as `bundle exec rspec` or `yarn test` without additional confirmation if they stay within task scope and are non-destructive.
   （依頼された作業にテスト実行が含まれる場合、タスク範囲内かつ非破壊であれば、`bundle exec rspec` や `yarn test` などを追加確認なしで実行すること）
 
+- When requested work includes version control operations, execute commands such as `git commit` or `git push` without additional confirmation if they stay within task scope.
+  （依頼された作業にバージョン管理操作が含まれる場合、タスク範囲内であれば、`git commit` や `git push` などを追加確認なしで実行すること）
+
 - Approval is required only for:
   - File deletions
   - Overwriting configuration files
