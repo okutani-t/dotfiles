@@ -34,50 +34,35 @@ AI-first, short, and strict.
 
 ---
 
-## 🤖 Execution Policy (実行ポリシー)
+## 🤖 Permission & Execution Policy (許可と実行ポリシー)
 
-- If work is explicitly requested by the user and remains in task scope, proceed without extra chat confirmation.
-  （ユーザーが明示依頼した作業でタスク範囲内なら、チャット上の追加確認なしで進めてよい）
-- Run requested tests (for example `bundle exec rspec`, `yarn test`) directly when non-destructive.
-  （依頼されたテスト実行は非破壊であれば直接実行すること）
-- Run requested version-control operations (for example `git add`, `git commit`, `git push`) directly.
-  （依頼された `git add` / `git commit` / `git push` は直接実行すること）
-- If a required command fails due to sandbox restrictions, rerun with privilege escalation via the platform prompt.
-  （必要コマンドが sandbox 制約で失敗した場合、プラットフォーム承認フローで権限昇格して再実行すること）
-
-### Platform Escalation Setup (権限プロンプト削減設定)
-
-- To avoid repeated approval prompts for git operations, approve persistent prefix rules in the platform prompt.
-  （git 操作の承認プロンプトを減らすため、プラットフォームの承認画面で恒久許可の prefix rule を承認すること）
-- Platform approval dialogs are controlled by the execution environment and cannot be disabled by `AGENTS.md` alone.
-  （プラットフォームの承認ダイアログは実行環境側の制御であり、`AGENTS.md` だけでは無効化できない）
-- When escalation is required for git operations, always include an appropriate `prefix_rule` in the escalation request.
-  （git 操作で権限昇格が必要な場合、昇格リクエストに適切な `prefix_rule` を必ず付けること）
-- Recommended prefix rules:
-  - `["git", "add"]`
-  - `["git", "commit"]`
-  - `["git", "push"]` (if push is used regularly)
-  （推奨 prefix rule：
-  - `["git", "add"]`
-  - `["git", "commit"]`
-  - `["git", "push"]`（push を常用する場合））
-
-### Actions Requiring Explicit User Request (明示依頼が必要な操作)
-
-- File deletions
-- Overwriting configuration files
-- Installing new dependencies
-- Database schema changes
-- Reading or modifying `.env` files
-- Non-secret environment variable modifications
-
-（以下の操作は、ユーザーの明示依頼がある場合のみ実行可能）
-- ファイル削除
-- 設定ファイル上書き
-- 依存追加
-- DBスキーマ変更
-- `.env` の読み取りまたは変更
-- 秘匿情報を除く環境変数の変更
+- **No-Ask by Default:** Execute routine, in-scope, non-destructive Codex work without extra permission prompts.
+  （通常の Codex 作業は、タスク範囲内かつ非破壊であれば追加確認なしで実行すること）
+- **Ask Only for High-Risk Actions:** Require explicit user request only for:
+  （確認は高リスク操作に限定し、以下のみ明示依頼を必須とする）
+  - File deletions
+  - Overwriting configuration files
+  - Installing new dependencies
+  - Database schema changes
+  - Reading or modifying `.env` files
+  - Non-secret environment variable modifications
+  （以下の操作は明示依頼がある場合のみ実行可能）
+  - ファイル削除
+  - 設定ファイル上書き
+  - 依存追加
+  - DBスキーマ変更
+  - `.env` の読み取りまたは変更
+  - 秘匿情報を除く環境変数の変更
+- **Run Requested Work Directly:** Non-destructive requested tasks (including tests and git operations like `git add` / `git commit` / `git push`) should be executed directly.
+  （依頼された非破壊タスク（テストや `git add` / `git commit` / `git push` を含む）は直接実行すること）
+- **Escalate Only When Required:** If a required command is blocked by sandbox restrictions, rerun via platform escalation prompt.
+  （必要コマンドが sandbox 制約で失敗した場合のみ、プラットフォーム承認フローで昇格して再実行すること）
+- **Reduce Repeat Prompts:** For recurring git escalations, include `prefix_rule` and prefer persistent approvals.
+  （git の反復的な昇格では `prefix_rule` を付け、恒久許可を優先して承認プロンプトを減らすこと）
+  - Recommended: `["git", "add"]`, `["git", "commit"]`, `["git", "push"]`
+  （推奨: `["git", "add"]`, `["git", "commit"]`, `["git", "push"]`）
+- **Platform-Limit Note:** Approval dialog behavior is controlled by the execution environment, not by `AGENTS.md` alone.
+  （承認ダイアログの挙動は実行環境側の制御であり、`AGENTS.md` だけでは無効化できない）
 
 ---
 
@@ -85,12 +70,8 @@ AI-first, short, and strict.
 
 - **Always Prohibited:** Never read or modify secrets or sensitive personal data.
   （常時禁止：秘匿情報および個人データの読み取り・変更は禁止）
-- **`.env` Exception:** Read or modify `.env` only when explicitly requested by the user.
-  （`.env` 例外：ユーザーの明示依頼がある場合のみ読み取り・変更を許可）
-- **Destructive Actions:** Ask for explicit permission before destructive operations outside this execution policy.
-  （本実行ポリシー外の破壊的操作は、事前に明示許可を得ること）
-- **Dependency Safety:** Follow the execution policy for installing software or packages.
-  （ソフトウェアやパッケージ追加は実行ポリシーに従うこと）
+- **Outside-Policy Destructive Actions:** Ask for explicit permission before destructive operations not covered in the execution policy.
+  （実行ポリシーに含まれない破壊的操作は、事前に明示許可を得ること）
 
 ---
 
