@@ -61,6 +61,8 @@ AI-first, short, and strict.
   （git の反復的な昇格では `prefix_rule` を付け、恒久許可を優先して承認プロンプトを減らすこと）
   - Recommended: `["git", "add"]`, `["git", "commit"]`, `["git", "push"]`
   （推奨: `["git", "add"]`, `["git", "commit"]`, `["git", "push"]`）
+- **Docker Exec Prompt Reduction:** For recurring `docker compose exec` escalations, request persistent approval with `prefix_rule: ["docker", "compose", "exec"]`.
+  （`docker compose exec` の反復的な昇格では `prefix_rule: ["docker", "compose", "exec"]` を付けて恒久許可を取り、承認プロンプトを減らすこと）
 - **Platform-Limit Note:** Approval dialog behavior is controlled by the execution environment, not by `AGENTS.md` alone.
   （承認ダイアログの挙動は実行環境側の制御であり、`AGENTS.md` だけでは無効化できない）
 
