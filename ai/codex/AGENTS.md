@@ -52,6 +52,9 @@ AI-first, short, and strict.
 - If a task is explicitly requested by the user, assume permission is granted within that scope.
   （ユーザーが明示的に依頼した場合、そのタスク範囲内では承認済みとみなす）
 
+- When requested work includes running tests, execute commands such as `bundle exec rspec` or `yarn test` without additional confirmation if they stay within task scope and are non-destructive.
+  （依頼された作業にテスト実行が含まれる場合、タスク範囲内かつ非破壊であれば、`bundle exec rspec` や `yarn test` などを追加確認なしで実行すること）
+
 - Approval is required only for:
   - File deletions
   - Overwriting configuration files
