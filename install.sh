@@ -68,6 +68,10 @@ else
     log_info "created ~/.gitconfig.local from template"
 fi
 
+log_step "Ensure global git ignore config"
+git config --global core.excludesfile "~/.gitignore_global"
+log_info "set core.excludesfile to ~/.gitignore_global"
+
 # Codex のグローバル設定を dotfiles 管理に寄せる
 log_step "Link global Codex files"
 mkdir -p ~/.codex
