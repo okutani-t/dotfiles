@@ -45,6 +45,19 @@ AI-first, short, and strict.
 - If a required command fails due to sandbox restrictions, rerun with privilege escalation via the platform prompt.
   （必要コマンドが sandbox 制約で失敗した場合、プラットフォーム承認フローで権限昇格して再実行すること）
 
+### Platform Escalation Setup (権限プロンプト削減設定)
+
+- To avoid repeated approval prompts for git operations, approve persistent prefix rules in the platform prompt.
+  （git 操作の承認プロンプトを減らすため、プラットフォームの承認画面で恒久許可の prefix rule を承認すること）
+- Recommended prefix rules:
+  - `["git", "add"]`
+  - `["git", "commit"]`
+  - `["git", "push"]` (if push is used regularly)
+  （推奨 prefix rule：
+  - `["git", "add"]`
+  - `["git", "commit"]`
+  - `["git", "push"]`（push を常用する場合））
+
 ### Actions Requiring Explicit User Request (明示依頼が必要な操作)
 
 - File deletions
