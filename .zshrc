@@ -61,6 +61,7 @@ alias e-kill='emacsclient -e "(kill-emacs)"'
 alias c='open -a Google\ Chrome'
 alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 alias vi=vim
+alias l='ls -lah'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
