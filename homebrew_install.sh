@@ -26,6 +26,9 @@ formulas=(
     ctags
     zsh
     zsh-completions
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    starship
     peco
     hub
     tig

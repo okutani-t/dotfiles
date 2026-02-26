@@ -15,6 +15,7 @@ typeset -U path PATH
 path=(
   /opt/homebrew/bin(N-/)
   /opt/homebrew/sbin(N-/)
+  /Applications/Ghostty.app/Contents/MacOS(N-/)
   /usr/bin
   /usr/sbin
   /usr/local/bin
@@ -29,12 +30,6 @@ path=(
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
-
-# oh-my-zsh
-ZSH=$HOME/dotfiles/oh-my-zsh
-ZSH_THEME=""
-plugins=(git rails ruby)
-source $ZSH/oh-my-zsh.sh
 
 # set locale
 export LANG=ja_JP.UTF-8
@@ -196,5 +191,21 @@ autoload -Uz compinit && compinit -i
 
 export PATH="$PATH:$HOME/flutter/bin"
 
-# プロンプトの表示を短くする（現在ディレクトリのみ表示）
-PROMPT='%1~ %# '
+# zsh-autosuggestionsを有効化する
+if command -v brew >/dev/null 2>&1; then
+  ZSH_AUTOSUGGESTIONS_FILE="$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  if [ -f "$ZSH_AUTOSUGGESTIONS_FILE" ]; then
+    source "$ZSH_AUTOSUGGESTIONS_FILE"
+  fi
+fi
+
+# zsh-syntax-highlightingを有効化する
+if command -v brew >/dev/null 2>&1; then
+  ZSH_SYNTAX_HIGHLIGHTING_FILE="$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  if [ -f "$ZSH_SYNTAX_HIGHLIGHTING_FILE" ]; then
+    source "$ZSH_SYNTAX_HIGHLIGHTING_FILE"
+  fi
+fi
+
+export STARSHIP_CONFIG="$HOME/.starship.toml"
+eval "$(starship init zsh)"

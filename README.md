@@ -27,7 +27,6 @@ chmod +x homebrew_install.sh install.sh
   - Runs `brew update`
   - Installs or upgrades predefined formulae/casks
 - `install.sh`
-  - Initializes git submodules (including `oh-my-zsh`)
   - Symlinks dotfiles from `~/dotfiles` to your home directory
   - Creates `~/.gitconfig.local` from template if missing
   - Links global AI config files to dotfiles-managed files:

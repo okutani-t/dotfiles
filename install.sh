@@ -38,9 +38,6 @@ ensure_real_dir() {
 THIS_DIR=$(cd "$(dirname "$0")"; pwd)
 
 cd "$THIS_DIR"
-log_step "Initialize submodules"
-git submodule init
-git submodule update
 
 cat << END
 
