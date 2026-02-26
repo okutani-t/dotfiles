@@ -1,3 +1,10 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("/Users/okutani/.zsh/completions" $fpath)
+autoload -Uz compinit
+compinit
+# OPENSPEC:END
+
 # homebrew
 if [ -x /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -25,9 +32,7 @@ fi
 
 # oh-my-zsh
 ZSH=$HOME/dotfiles/oh-my-zsh
-# oh-my-zsh theme
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="candy"
+ZSH_THEME=""
 plugins=(git rails ruby)
 source $ZSH/oh-my-zsh.sh
 
@@ -190,3 +195,6 @@ fpath=(~/.stripe $fpath)
 autoload -Uz compinit && compinit -i
 
 export PATH="$PATH:$HOME/flutter/bin"
+
+# プロンプトの表示を短くする（現在ディレクトリのみ表示）
+PROMPT='%1~ %# '
