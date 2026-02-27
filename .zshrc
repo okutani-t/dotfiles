@@ -148,15 +148,17 @@ fi
 
 # zshでpecoを使うための設定
 function peco-select-history() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
+    local -a reverse_cmd
+    local history_list
+    local selected
+    if command -v tac >/dev/null 2>&1; then
+        reverse_cmd=(tac)
     else
-        tac="tail -r"
+        reverse_cmd=(tail -r)
     fi
-    BUFFER=$(\history -n 1 | \
-        eval $tac | \
-        peco --query "$LBUFFER")
+    history_list=$(\history -n 1 2>/dev/null) || return
+    selected=$(printf '%s\n' "$history_list" | "${reverse_cmd[@]}" | peco --query "$LBUFFER") || return
+    BUFFER="$selected"
     CURSOR=$#BUFFER
     zle clear-screen
 }
