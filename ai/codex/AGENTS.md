@@ -69,6 +69,8 @@ Applies to any repository, project, or task unless overridden by project-specifi
   - 秘匿情報を除く環境変数の変更
 - **Run Requested Work Directly:** Execute requested non-destructive tasks directly, including tests and `git add` / `git commit` / `git push`.
   （依頼された非破壊タスク（テストや `git add` / `git commit` / `git push` を含む）は直接実行すること）
+- **Explicit Commit Shortcut:** Treat `$commit` as an explicit user request to create a git commit for the current worktree. Do not ask whether to commit; inspect the diff, choose a reasonable commit message if none is provided, and run the necessary `git add` / `git commit` steps directly.
+  （`$commit` は、現在の作業ツリーを git commit する明示依頼として扱うこと。コミットするかどうかの確認はせず、差分を確認して必要なら妥当なコミットメッセージを補い、必要な `git add` / `git commit` を直接実行すること）
 - **Escalate Only When Required:** If a required command is blocked by sandbox restrictions, rerun via platform escalation.
   （必要コマンドが sandbox 制約で失敗した場合のみ、プラットフォーム承認フローで昇格して再実行すること）
 - **Reduce Repeat Prompts:** For recurring git escalations, include `prefix_rule` and request persistent approvals.

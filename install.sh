@@ -72,28 +72,41 @@ log_info "set core.excludesfile to ~/.gitignore_global"
 # Codex のグローバル設定を dotfiles 管理に寄せる
 log_step "Link global Codex files"
 mkdir -p ~/.codex
+ensure_real_dir ~/.codex/prompts
 ensure_real_dir ~/.codex/skills
-mkdir -p ~/.codex/skills/pr-review
-
-if [ -L "$THIS_DIR/ai/codex/skills/pr-review/SKILL.md" ]; then
-    echo "[ERROR] $THIS_DIR/ai/codex/skills/pr-review/SKILL.md must be a regular file."
-    exit 1
-fi
 
 if [ ! -f "$THIS_DIR/ai/codex/AGENTS.md" ]; then
     echo "[ERROR] $THIS_DIR/ai/codex/AGENTS.md does not exist."
     exit 1
 fi
 
-if [ ! -f "$THIS_DIR/ai/codex/skills/pr-review/SKILL.md" ]; then
-    echo "[ERROR] $THIS_DIR/ai/codex/skills/pr-review/SKILL.md does not exist."
-    exit 1
-fi
-
 ln -snf "$THIS_DIR/ai/codex/AGENTS.md" ~/.codex/AGENTS.md
-sync_regular_file "$THIS_DIR/ai/codex/skills/pr-review/SKILL.md" ~/.codex/skills/pr-review/SKILL.md
 log_info "linked ~/.codex/AGENTS.md"
-log_info "copied ~/.codex/skills/pr-review/SKILL.md"
+
+shopt -s nullglob
+
+for skill_file in "$THIS_DIR"/ai/codex/skills/*/SKILL.md; do
+    if [ -L "$skill_file" ]; then
+        echo "[ERROR] $skill_file must be a regular file."
+        exit 1
+    fi
+
+    skill_name=$(basename "$(dirname "$skill_file")")
+    mkdir -p "$HOME/.codex/skills/$skill_name"
+    sync_regular_file "$skill_file" "$HOME/.codex/skills/$skill_name/SKILL.md"
+    log_info "copied ~/.codex/skills/$skill_name/SKILL.md"
+done
+
+for prompt_file in "$THIS_DIR"/ai/codex/prompts/*.md; do
+    if [ -L "$prompt_file" ]; then
+        echo "[ERROR] $prompt_file must be a regular file."
+        exit 1
+    fi
+
+    prompt_name=$(basename "$prompt_file")
+    sync_regular_file "$prompt_file" "$HOME/.codex/prompts/$prompt_name"
+    log_info "copied ~/.codex/prompts/$prompt_name"
+done
 
 cat << END
 

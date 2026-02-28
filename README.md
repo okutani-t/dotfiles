@@ -21,7 +21,7 @@ chmod +x homebrew_install.sh install.sh
 ## Scripts
 
 - `homebrew_install.sh`: Installs Homebrew (if needed), runs `brew update`, then installs/upgrades predefined packages.
-- `install.sh`: Creates symlinks from this repo to `~/`, ensures `~/.gitconfig.local`, links `~/.codex/AGENTS.md`, and copies PR-review skill files.
+- `install.sh`: Creates symlinks from this repo to `~/`, ensures `~/.gitconfig.local`, links `~/.codex/AGENTS.md`, and copies Codex skill/prompt files.
 
 ## Notes
 
