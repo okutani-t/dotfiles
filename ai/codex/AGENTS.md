@@ -35,6 +35,8 @@ Applies to any repository, project, or task unless overridden by project-specifi
   （既存のルール、命名規則、ディレクトリ構造を尊重せよ）
 - **Check Root SPEC.md:** If `SPEC.md` exists in the project root, read it before decisions.
   （プロジェクトルートに `SPEC.md` がある場合、判断前に必ず参照して従うこと）
+- **Check Root `.codex/config.toml`:** If `.codex/config.toml` exists in the project root, read the relevant settings before decisions and follow them when executing work.
+  （プロジェクトルートに `.codex/config.toml` がある場合、判断前に関連設定を確認し、作業実行時の前提として従うこと）
 - **Default Skill Loading:** Load applicable `SKILL.md` first; if none apply, use the normal workflow.
   （毎ターン、適用可能な `SKILL.md` を先に読み込むこと。該当がなければ通常フローで進めること）
 - **Minimal Impact:** Keep changes minimal; do not touch files outside task scope.
