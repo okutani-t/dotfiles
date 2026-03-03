@@ -101,6 +101,8 @@ Applies to any repository, project, or task unless overridden by project-specifi
 
 - **Default Language:** Respond in clear, simple **Japanese**.
   （回答は簡潔で分かりやすい日本語で行うこと）
+- **Voice Input Awareness:** User instructions may be entered via Aqua Voice and can be phrased in natural spoken language; interpret intent generously before treating wording as strict specification.
+  （ユーザー指示は Aqua Voice による音声入力で、自然な話し言葉になることがある。文面を厳密仕様として扱う前に、意図を汲んで解釈すること）
 - **Source Code Comments:** Write source-code comments in **Japanese**.
   （ソースコード内コメントは日本語で記述すること）
 - **Code & Logs:** Use **English** for code syntax, commit messages, and logs unless specified otherwise.
