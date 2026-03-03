@@ -1,6 +1,7 @@
 # for ~/.gitignore
 .DS_Store
 a.out
+.codex/config.toml
 
 # for ~/dotfiles/.emacs.d
 .emacs.d/vendor/
