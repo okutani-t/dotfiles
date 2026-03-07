@@ -14,6 +14,13 @@ Applies to any repository, project, or task unless overridden by project-specifi
 
 ---
 
+## 🎨 Styling (スタイリング)
+
+- **Prefer Tailwind CSS:** If Tailwind CSS is introduced in the project, use Tailwind utility classes for styling instead of writing custom CSS. Only write custom CSS for things Tailwind cannot express.
+  （プロジェクトに Tailwind CSS が導入されている場合、スタイルは極力 Tailwind のユーティリティクラスで記述すること。Tailwind で表現できないものだけカスタム CSS を書くこと）
+
+---
+
 ## 📖 Readable Code
 
 - **Easy to Understand:** Code must be easy to read by others.
