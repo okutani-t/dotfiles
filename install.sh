@@ -50,6 +50,7 @@ END
 log_step "Create symlinks in home directory"
 for f in .??*; do
     [ "$f" = ".git" ] && continue
+    [ "$f" = ".codex" ] && continue
     [ "$f" = ".gitconfig.local.template" ] && continue
     [ "$f" = ".gitmodules" ] && continue
 
@@ -107,6 +108,18 @@ for prompt_file in "$THIS_DIR"/ai/codex/prompts/*.md; do
     sync_regular_file "$prompt_file" "$HOME/.codex/prompts/$prompt_name"
     log_info "copied ~/.codex/prompts/$prompt_name"
 done
+
+# Claude Code のグローバル設定を dotfiles 管理に寄せる
+log_step "Link global Claude files"
+ensure_real_dir ~/.claude
+
+if [ ! -f "$THIS_DIR/ai/claude/CLAUDE.md" ]; then
+    echo "[ERROR] $THIS_DIR/ai/claude/CLAUDE.md does not exist."
+    exit 1
+fi
+
+sync_regular_file "$THIS_DIR/ai/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+log_info "copied ~/.claude/CLAUDE.md"
 
 cat << END
 
