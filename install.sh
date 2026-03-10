@@ -121,6 +121,19 @@ fi
 sync_regular_file "$THIS_DIR/ai/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 log_info "copied ~/.claude/CLAUDE.md"
 
+# Ghostty の設定を dotfiles 管理に寄せる
+log_step "Link Ghostty config"
+
+if [ ! -f "$THIS_DIR/.ghostty/config" ]; then
+    echo "[ERROR] $THIS_DIR/.ghostty/config does not exist."
+    exit 1
+fi
+
+sync_regular_file \
+    "$THIS_DIR/.ghostty/config" \
+    "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+log_info "copied Ghostty config"
+
 cat << END
 
 **************************************************
