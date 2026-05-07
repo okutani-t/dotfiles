@@ -31,6 +31,8 @@ Applies to any repository, project, or task unless overridden by project-specifi
   （分岐と制御フローを単純にし、深いネストを避ける）
 - **Small, Focused Units:** Split unrelated logic into small functions.
   （無関係な処理は分離し、小さな関数にまとめる）
+- **Keep Rails Views Simple:** In Rails views, avoid introducing variables unless truly necessary.
+  （Rails の view では、明確に必要な場合を除き極力変数を使わないこと）
 - **Stay Consistent:** Follow existing style and structure.
   （既存のスタイル・構造との一貫性を保つ）
 
